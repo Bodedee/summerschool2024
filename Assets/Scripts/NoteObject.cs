@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class NoteObject : MonoBehaviour
 {
 
     public bool canBePressed;
 
     public KeyCode keyToPress;
+    public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,24 @@ public class NoteObject : MonoBehaviour
             {
                 gameObject.SetActive(false);
 
-                GameManager.instance.NoteHit();
+                //GameManager.instance.NoteHit();
+                //can just add more of these for more variations in score that can be given
+
+                if(Mathf.Abs( transform.position.y) > 0.25)
+                {
+                    GameManager.instance.NormalHit();
+                    Instantiate( hitEffect, transform.position, hitEffect.transform.rotation);
+                } 
+                else if(Mathf.Abs( transform.position.y) > 0.05f)
+                {
+                    GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                }
+                else
+                {
+                    GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                }
             }
            
         }
@@ -43,6 +63,7 @@ public class NoteObject : MonoBehaviour
         {
             canBePressed = false;
             GameManager.instance.NoteMissed();
+            Instantiate(missEffect, transform.position, missEffect.transform.rotation);
         }
     }
 }
