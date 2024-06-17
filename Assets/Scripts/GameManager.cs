@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int currentScore;
 
-    public List<object> ListOfAreas = new List<object>();
+    //public List<object> ListOfAreas = new List<object>();
     public int currentArea;
 
     public int scorePerPerfectNote = 150;
@@ -20,14 +20,14 @@ public class GameManager : MonoBehaviour
 
     
     public Text scoreText;
-    public Text areaText;
+    //public Text areaText;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         scoreText.text = "Score: 0";
-        areaText.text = "Area : 1";
+        //areaText.text = "Area : 1";
     }
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Hit On Time");
         //currentScore += scorePerNote;
         scoreText.text = "Score: " + currentScore;
-        areaText.text = "Area: " + currentArea;
+        //areaText.text = "Area: " + currentArea;
     }
     public void NoteMissed()
     {
